@@ -5,6 +5,8 @@ struct TaskDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var newSubtaskTitle: String = ""
     @State private var showingSubtaskInput: Bool = false
+    @FocusState private var titleFocused: Bool
+    @FocusState private var subtaskFocused: Bool
     
     var body: some View {
         ScrollView {
@@ -42,6 +44,8 @@ struct TaskDetailView: View {
         VStack(alignment: .leading, spacing: 12) {
             TextField("Task Title", text: $viewModel.title)
                 .font(.system(size: 24, weight: .bold))
+                .focused($titleFocused)
+                .onAppear { if viewModel.title.isEmpty { titleFocused = true } }
             
             HStack {
                 Picker("Status", selection: $viewModel.status) {
@@ -101,6 +105,8 @@ struct TaskDetailView: View {
                 HStack {
                     TextField("New subtask", text: $newSubtaskTitle)
                         .textFieldStyle(.roundedBorder)
+                        .focused($subtaskFocused)
+                        .onAppear { subtaskFocused = true }
                         .onSubmit {
                             if !newSubtaskTitle.isEmpty {
                                 viewModel.addSubtask(title: newSubtaskTitle)

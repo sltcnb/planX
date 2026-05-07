@@ -39,6 +39,7 @@ struct SubtaskRowView: View {
     @State private var titleText: String = ""
     @State private var showingNotes: Bool = false
     @State private var notesText: String = ""
+    @FocusState private var titleFocused: Bool
     
     var body: some View {
         HStack(spacing: 8) {
@@ -56,6 +57,8 @@ struct SubtaskRowView: View {
                 TextField("Subtask", text: $titleText)
                     .textFieldStyle(.plain)
                     .font(.body)
+                    .focused($titleFocused)
+                    .onAppear { titleFocused = true }
                     .onSubmit {
                         saveTitle()
                     }

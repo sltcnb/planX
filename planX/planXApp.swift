@@ -78,6 +78,11 @@ struct planXApp: App {
                     NotificationCenter.default.post(name: .goToBoard, object: nil)
                 }
                 .keyboardShortcut("3", modifiers: .command)
+
+                Button("Calendar") {
+                    NotificationCenter.default.post(name: .goToCalendar, object: nil)
+                }
+                .keyboardShortcut("4", modifiers: .command)
             }
             
             CommandMenu("Task") {
@@ -116,6 +121,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension Notification.Name {
     static let newTask = Notification.Name("newTask")
     static let newFullFormTask = Notification.Name("newFullFormTask")
+    static let goToCalendar = Notification.Name("goToCalendar")
     static let toggleSidebar = Notification.Name("toggleSidebar")
     static let goToToday = Notification.Name("goToToday")
     static let goToUpcoming = Notification.Name("goToUpcoming")

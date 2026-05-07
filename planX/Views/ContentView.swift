@@ -1,12 +1,14 @@
 import SwiftUI
 
+enum ViewMode { case board, calendar, graph }
+
 struct ContentView: View {
     @StateObject private var appViewModel = AppViewModel()
     @StateObject private var quickAddViewModel = QuickAddViewModel()
     @State private var selectedTask: TaskItem?
     @State private var taskDetailViewModel = TaskDetailViewModel()
     @Environment(\.modelContext) private var modelContext
-    @State private var showingGraph = false
+    @State private var viewMode: ViewMode = .board
 
     var body: some View {
         HStack(spacing: 0) {
@@ -15,11 +17,15 @@ struct ContentView: View {
 
             Divider()
 
-            if showingGraph {
-                TaskGraphView(viewModel: appViewModel)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            } else {
+            switch viewMode {
+            case .board:
                 planXBoardView(viewModel: appViewModel, selectedTask: $selectedTask)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            case .calendar:
+                CalendarView(viewModel: appViewModel, selectedTask: $selectedTask)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            case .graph:
+                TaskGraphView(viewModel: appViewModel)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
@@ -70,9 +76,13 @@ struct ContentView: View {
                         appViewModel.selectedTaskIDs = []
                     }
                 } else {
-                    Button(action: { showingGraph.toggle() }) {
-                        Label(showingGraph ? "Kanban" : "Graph", systemImage: showingGraph ? "rectangle.split.3x1" : "point.3.connected.trianglepath.dotted")
+                    Picker("View", selection: $viewMode) {
+                        Image(systemName: "rectangle.split.3x1").tag(ViewMode.board)
+                        Image(systemName: "calendar").tag(ViewMode.calendar)
+                        Image(systemName: "point.3.connected.trianglepath.dotted").tag(ViewMode.graph)
                     }
+                    .pickerStyle(.segmented)
+                    .frame(width: 100)
                     Button(action: { appViewModel.isSelectMode = true }) {
                         Label("Select", systemImage: "checkmark.circle")
                     }

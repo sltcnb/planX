@@ -53,6 +53,7 @@
 		A1000044 /* EnhancedInspectorComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000044 /* EnhancedInspectorComponents.swift */; };
 		A1000045 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000045 /* Models.swift */; };
 		A1000046 /* TaskGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000046 /* TaskGraphView.swift */; };
+		A1000047 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000047 /* CalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +104,7 @@
 		A2000044 /* EnhancedInspectorComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancedInspectorComponents.swift; sourceTree = "<group>"; };
 		A2000045 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		A2000046 /* TaskGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGraphView.swift; sourceTree = "<group>"; };
+		A2000047 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				A2000040 /* EnhancedTaskInspectorView.swift */,
 				A2000041 /* ExportImportView.swift */,
 				A2000046 /* TaskGraphView.swift */,
+				A2000047 /* CalendarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				A1000044 /* EnhancedInspectorComponents.swift in Sources */,
 				A1000045 /* Models.swift in Sources */,
 				A1000046 /* TaskGraphView.swift in Sources */,
+				A1000047 /* CalendarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,7 +3,8 @@ import SwiftUI
 struct QuickAddView: View {
     @ObservedObject var viewModel: QuickAddViewModel
     @Environment(\.dismiss) private var dismiss
-    
+    @FocusState private var inputFocused: Bool
+
     var body: some View {
         VStack(spacing: 16) {
             HStack {
@@ -18,12 +19,14 @@ struct QuickAddView: View {
             TextField("Enter task (e.g., 'Finish tax documents tomorrow high #admin')", text: $viewModel.inputText)
                 .textFieldStyle(.roundedBorder)
                 .font(.system(size: 16))
+                .focused($inputFocused)
                 .onChange(of: viewModel.inputText) { _, _ in
                     viewModel.parseInput()
                 }
                 .onSubmit {
                     viewModel.addTask()
                 }
+                .onAppear { inputFocused = true }
             
             if let info = viewModel.parsedInfo {
                 VStack(alignment: .leading, spacing: 8) {

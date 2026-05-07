@@ -27,6 +27,8 @@ struct TaskDetailModalView: View {
     @State private var showingDependencyPicker = false
     @State private var pendingDepType = "blocks"
     @State private var isDeleted = false
+    @FocusState private var newTagFocused: Bool
+    @FocusState private var newSubtaskFocused: Bool
 
     init(task: TaskItem, onDismiss: @escaping () -> Void) {
         self.task = task
@@ -233,6 +235,8 @@ struct TaskDetailModalView: View {
                             TextField("Tag name", text: $newTagName)
                                 .textFieldStyle(.plain)
                                 .frame(width: 90)
+                                .focused($newTagFocused)
+                                .onAppear { newTagFocused = true }
                                 .onSubmit { createAndAddTag() }
                             Button("Add") { createAndAddTag() }.font(.caption)
                             Button(action: { showingNewTagInput = false; newTagName = "" }) {
@@ -297,6 +301,8 @@ struct TaskDetailModalView: View {
                     Image(systemName: "circle").foregroundColor(.secondary).font(.system(size: 14))
                     TextField("Add subtask", text: $newSubtaskTitle)
                         .textFieldStyle(.plain)
+                        .focused($newSubtaskFocused)
+                        .onAppear { newSubtaskFocused = true }
                         .onSubmit { addSubtask() }
                     Button("Add") { addSubtask() }
                     Button("Cancel") { showingSubtaskInput = false; newSubtaskTitle = "" }
@@ -528,6 +534,7 @@ struct ModalSubtaskRow: View {
     let onDelete: () -> Void
     @State private var isEditing = false
     @State private var editTitle = ""
+    @FocusState private var editFocused: Bool
 
     var body: some View {
         HStack(spacing: 8) {
@@ -541,6 +548,8 @@ struct ModalSubtaskRow: View {
             if isEditing {
                 TextField("", text: $editTitle)
                     .textFieldStyle(.plain)
+                    .focused($editFocused)
+                    .onAppear { editFocused = true }
                     .onSubmit {
                         if !editTitle.isEmpty { subtask.title = editTitle }
                         isEditing = false

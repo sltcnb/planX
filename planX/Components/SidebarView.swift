@@ -9,6 +9,8 @@ struct SidebarView: View {
     @State private var showingNewTag = false
     @State private var newTagName = ""
     @State private var tagsExpanded = true
+    @FocusState private var projectNameFocused: Bool
+    @FocusState private var tagNameFocused: Bool
 
     var body: some View {
         VStack(spacing: 0) {
@@ -127,6 +129,8 @@ struct SidebarView: View {
             Text("New Project").font(.headline)
             TextField("Project name", text: $newProjectName)
                 .textFieldStyle(.roundedBorder)
+                .focused($projectNameFocused)
+                .onAppear { projectNameFocused = true }
                 .onSubmit { createProject() }
             HStack {
                 Button("Cancel") { showingNewProject = false; newProjectName = "" }
@@ -145,6 +149,8 @@ struct SidebarView: View {
             Text("New Tag").font(.headline)
             TextField("Tag name", text: $newTagName)
                 .textFieldStyle(.roundedBorder)
+                .focused($tagNameFocused)
+                .onAppear { tagNameFocused = true }
                 .onSubmit { createTag() }
             HStack {
                 Button("Cancel") { showingNewTag = false; newTagName = "" }

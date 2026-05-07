@@ -172,7 +172,8 @@ struct CommentRowView: View {
     
     @State private var isEditing: Bool = false
     @State private var editText: String = ""
-    
+    @FocusState private var editFocused: Bool
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
@@ -219,6 +220,8 @@ struct CommentRowView: View {
                             .padding(8)
                             .background(Color.secondary.opacity(0.05))
                             .cornerRadius(8)
+                            .focused($editFocused)
+                            .onAppear { editFocused = true }
                         
                         HStack {
                             Button("Cancel") {

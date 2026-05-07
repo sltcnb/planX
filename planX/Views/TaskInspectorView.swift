@@ -7,6 +7,7 @@ struct TaskInspectorView: View {
     @State private var showingSubtaskInput: Bool = false
     @State private var newLabelName: String = ""
     @State private var showingAddLabel: Bool = false
+    @FocusState private var subtaskFocused: Bool
     
     var body: some View {
         ScrollView {
@@ -334,6 +335,8 @@ struct TaskInspectorView: View {
                     
                     TextField("Add an item", text: $newSubtaskTitle)
                         .textFieldStyle(.plain)
+                        .focused($subtaskFocused)
+                        .onAppear { subtaskFocused = true }
                         .onSubmit {
                             addSubtask()
                         }
@@ -488,7 +491,8 @@ struct InspectorSubtaskRowView: View {
     
     @State private var isEditingTitle: Bool = false
     @State private var titleText: String = ""
-    
+    @FocusState private var titleFocused: Bool
+
     var body: some View {
         HStack(spacing: 12) {
             Button(action: onToggle) {
@@ -500,6 +504,8 @@ struct InspectorSubtaskRowView: View {
             if isEditingTitle {
                 TextField("Item", text: $titleText)
                     .textFieldStyle(.plain)
+                    .focused($titleFocused)
+                    .onAppear { titleFocused = true }
                     .onSubmit {
                         saveTitle()
                     }
