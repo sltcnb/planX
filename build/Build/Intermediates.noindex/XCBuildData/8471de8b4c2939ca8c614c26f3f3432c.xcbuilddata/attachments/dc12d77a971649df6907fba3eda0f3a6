@@ -1,0 +1,241 @@
+{
+  "" : {
+    "const-values" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Planner-primary.swiftconstvalues",
+    "dependencies" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Planner-primary.d",
+    "diagnostics" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Planner-primary.dia",
+    "emit-module-dependencies" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Planner-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Planner-primary-emit-module.dia",
+    "pch" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Planner-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Planner-primary.swiftdeps"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Components/AttachmentSectionView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/AttachmentSectionView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/AttachmentSectionView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/AttachmentSectionView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Components/EnhancedInspectorComponents.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/EnhancedInspectorComponents.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/EnhancedInspectorComponents.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/EnhancedInspectorComponents.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Components/MarkdownNotesView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/MarkdownNotesView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/MarkdownNotesView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/MarkdownNotesView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Components/QuickAddView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/QuickAddView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/QuickAddView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/QuickAddView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Components/SidebarView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/SidebarView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/SidebarView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/SidebarView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Components/SubtaskListView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/SubtaskListView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/SubtaskListView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/SubtaskListView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Components/TaskDetailView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskDetailView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskDetailView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskDetailView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Components/TaskListView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskListView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskListView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskListView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Components/TaskRowView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskRowView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskRowView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskRowView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/ActivityLog.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/ActivityLog.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/ActivityLog.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/ActivityLog.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/Attachment.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/Attachment.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Attachment.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Attachment.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/Comment.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/Comment.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Comment.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Comment.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/Models.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/Models.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Models.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Models.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/Priority.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/Priority.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Priority.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Priority.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/Project.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/Project.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Project.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Project.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/RecurrenceRule.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/RecurrenceRule.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/RecurrenceRule.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/RecurrenceRule.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/Subtask.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/Subtask.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Subtask.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Subtask.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/Tag.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/Tag.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Tag.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Tag.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/TaskDependency.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskDependency.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskDependency.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskDependency.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/TaskItem.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskItem.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskItem.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskItem.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/TaskStatus.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskStatus.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskStatus.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskStatus.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Models/TimeEntry.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TimeEntry.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TimeEntry.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TimeEntry.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/PlannerApp.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/PlannerApp.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/PlannerApp.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/PlannerApp.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Services/AttachmentService.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/AttachmentService.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/AttachmentService.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/AttachmentService.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Services/CommentService.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/CommentService.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/CommentService.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/CommentService.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Services/DataStore.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/DataStore.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/DataStore.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/DataStore.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Services/DependencyService.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/DependencyService.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/DependencyService.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/DependencyService.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Services/ExportImportService.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/ExportImportService.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/ExportImportService.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/ExportImportService.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Services/NaturalLanguageParser.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/NaturalLanguageParser.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/NaturalLanguageParser.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/NaturalLanguageParser.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Services/RecurrenceService.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/RecurrenceService.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/RecurrenceService.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/RecurrenceService.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Services/SampleDataGenerator.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/SampleDataGenerator.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/SampleDataGenerator.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/SampleDataGenerator.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Services/TaskService.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskService.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskService.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskService.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Services/TimeTrackingService.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TimeTrackingService.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TimeTrackingService.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TimeTrackingService.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/ViewModels/AppViewModel.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/AppViewModel.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/AppViewModel.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/AppViewModel.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/ViewModels/QuickAddViewModel.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/QuickAddViewModel.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/QuickAddViewModel.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/QuickAddViewModel.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/ViewModels/TaskDetailViewModel.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskDetailViewModel.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskDetailViewModel.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskDetailViewModel.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Views/ContentView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/ContentView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Views/EnhancedTaskInspectorView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/EnhancedTaskInspectorView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/EnhancedTaskInspectorView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/EnhancedTaskInspectorView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Views/ExportImportView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/ExportImportView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/ExportImportView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/ExportImportView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Views/PlannerBoardView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/PlannerBoardView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/PlannerBoardView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/PlannerBoardView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Views/SettingsView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/SettingsView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Views/TaskGraphView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskGraphView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskGraphView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskGraphView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Views/TaskInspectorView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskInspectorView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskInspectorView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TaskInspectorView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Views/TodayView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/TodayView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TodayView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/TodayView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/Planner/Views/UpcomingView.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/UpcomingView.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/UpcomingView.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/UpcomingView.o"
+  },
+  "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/Planner.build/Release/Planner.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  }
+}

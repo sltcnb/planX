@@ -1,0 +1,24 @@
+{
+  "source": "/Users/nbuisson/Tools/personal/Planner/Planner/Views/TaskGraphView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Blocks",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 171
+        }
+      },
+      {
+        "comment": "",
+        "key": "Related",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 172
+        }
+      }
+    ]
+  },
+  "version": 1
+}

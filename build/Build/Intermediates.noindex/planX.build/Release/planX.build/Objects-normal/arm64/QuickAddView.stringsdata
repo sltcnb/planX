@@ -1,0 +1,64 @@
+{
+  "source": "/Users/nbuisson/Tools/personal/planX/planX/Components/QuickAddView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Enter task (e.g., 'Finish tax documents tomorrow high #admin')",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quick Add Task",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "Preview:",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "@%@",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "#%@",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 45
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 61
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add Task",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 68
+        }
+      }
+    ]
+  },
+  "version": 1
+}

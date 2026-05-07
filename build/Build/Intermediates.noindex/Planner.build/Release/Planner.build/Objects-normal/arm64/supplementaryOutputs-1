@@ -1,0 +1,12 @@
+{
+  "/Users/nbuisson/Tools/personal/Planner/Planner/PlannerApp.swift" : {
+    "abi-baseline-json" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/planX.abi.json",
+    "const-values" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Planner-primary.swiftconstvalues",
+    "dependencies" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Planner-primary.d",
+    "diagnostics" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/Planner-primary.dia",
+    "objc-header" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/planX-Swift.h",
+    "swiftdoc" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/planX.swiftdoc",
+    "swiftmodule" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/planX.swiftmodule",
+    "swiftsourceinfo" : "/Users/nbuisson/Tools/personal/Planner/build/Build/Intermediates.noindex/Planner.build/Release/Planner.build/Objects-normal/arm64/planX.swiftsourceinfo"
+  }
+}

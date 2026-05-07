@@ -1,0 +1,296 @@
+{
+  "source": "/Users/nbuisson/Tools/personal/Planner/Planner/Views/EnhancedTaskInspectorView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Task title",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 90
+        }
+      },
+      {
+        "comment": "",
+        "key": "Status",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 122
+        }
+      },
+      {
+        "comment": "",
+        "key": "Status",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 123
+        }
+      },
+      {
+        "comment": "",
+        "key": "Priority",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 133
+        }
+      },
+      {
+        "comment": "",
+        "key": "Priority",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 134
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start Date",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 152
+        }
+      },
+      {
+        "comment": "",
+        "key": "Set date",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 163
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "Due Date",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 169
+        }
+      },
+      {
+        "comment": "",
+        "key": "Set date",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 180
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 172
+        }
+      },
+      {
+        "comment": "",
+        "key": "Project",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 194
+        }
+      },
+      {
+        "comment": "",
+        "key": "None",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 196
+        }
+      },
+      {
+        "comment": "",
+        "key": "No project",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 207
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tags",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 215
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tag name",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 233
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 237
+        }
+      },
+      {
+        "comment": "",
+        "key": "New tag…",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 251
+        }
+      },
+      {
+        "comment": "",
+        "key": "Subtasks",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 269
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld/%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 271
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add subtask",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 298
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 301
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 302
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add a subtask",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 310
+        }
+      },
+      {
+        "comment": "",
+        "key": "Notes",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 325
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show on kanban",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 327
+        }
+      },
+      {
+        "comment": "",
+        "key": "Time Tracking",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 361
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld entr%@",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 391
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stop",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 376
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start Timer",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 385
+        }
+      },
+      {
+        "comment": "",
+        "key": "No links",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 423
+        }
+      },
+      {
+        "comment": "",
+        "key": "Links",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 404
+        }
+      },
+      {
+        "comment": "",
+        "key": "Blocked by…",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 407
+        }
+      },
+      {
+        "comment": "",
+        "key": "Blocks…",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 408
+        }
+      },
+      {
+        "comment": "",
+        "key": "Related to…",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 409
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 542
+        }
+      }
+    ]
+  },
+  "version": 1
+}

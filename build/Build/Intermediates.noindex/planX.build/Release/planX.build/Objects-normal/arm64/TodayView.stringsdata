@@ -1,0 +1,32 @@
+{
+  "source": "/Users/nbuisson/Tools/personal/planX/planX/Views/TodayView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "All clear for today!",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "No tasks due today. Time to relax or get ahead on upcoming tasks.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 55
+        }
+      },
+      {
+        "comment": "",
+        "key": "+%lld more",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 110
+        }
+      }
+    ]
+  },
+  "version": 1
+}

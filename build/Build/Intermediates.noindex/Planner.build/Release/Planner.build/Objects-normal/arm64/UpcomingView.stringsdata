@@ -1,0 +1,24 @@
+{
+  "source": "/Users/nbuisson/Tools/personal/Planner/Planner/Views/UpcomingView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Upcoming",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "No upcoming tasks",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 57
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,24 @@
+{
+  "source": "/Users/nbuisson/Tools/personal/Planner/Planner/Components/MarkdownNotesView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Preview",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Notes",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 14
+        }
+      }
+    ]
+  },
+  "version": 1
+}
