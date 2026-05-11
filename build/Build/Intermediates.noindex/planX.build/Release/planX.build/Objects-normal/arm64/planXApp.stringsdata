@@ -15,7 +15,7 @@
         "key": "Task",
         "location": {
           "startingColumn": 25,
-          "startingLine": 83
+          "startingLine": 88
         }
       },
       {
@@ -68,10 +68,18 @@
       },
       {
         "comment": "",
+        "key": "Calendar",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 82
+        }
+      },
+      {
+        "comment": "",
         "key": "Mark Complete",
         "location": {
           "startingColumn": 24,
-          "startingLine": 84
+          "startingLine": 89
         }
       },
       {
@@ -79,7 +87,7 @@
         "key": "Delete Task",
         "location": {
           "startingColumn": 24,
-          "startingLine": 89
+          "startingLine": 94
         }
       }
     ]

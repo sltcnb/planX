@@ -137,7 +137,7 @@ struct BucketView: View {
     private func taskCard(_ task: TaskItem) -> some View {
         planXTaskCardView(
             task: task,
-            isSelected: selectedTask?.id == task.id,
+            isSelected: selectedTask?.modelContext != nil && selectedTask?.id == task.id,
             isSelectMode: viewModel.isSelectMode,
             isCheckSelected: viewModel.selectedTaskIDs.contains(task.id),
             onTap: {
@@ -152,6 +152,21 @@ struct BucketView: View {
                 }
             },
             onToggleComplete: { updateTaskStatus(task, to: task.isCompleted ? .notStarted : .done) },
+            onDelete: {
+                if selectedTask?.id == task.id { selectedTask = nil }
+                viewModel.tasks.removeAll { $0.id == task.id }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    let tid = task.id
+                    if let allDeps = try? modelContext.fetch(FetchDescriptor<TaskDependency>()) {
+                        for dep in allDeps where dep.predecessor?.id == tid || dep.successor?.id == tid {
+                            modelContext.delete(dep)
+                        }
+                    }
+                    modelContext.delete(task)
+                    try? modelContext.save()
+                    viewModel.refresh()
+                }
+            },
             modelContext: modelContext
         )
         .onDrag { NSItemProvider(object: NSString(string: task.id.uuidString)) }
@@ -182,6 +197,7 @@ struct planXTaskCardView: View {
     let isCheckSelected: Bool
     let onTap: () -> Void
     let onToggleComplete: () -> Void
+    let onDelete: () -> Void
     let modelContext: ModelContext
 
     var body: some View {
@@ -297,8 +313,7 @@ struct planXTaskCardView: View {
             }
             Divider()
             Button("Delete", role: .destructive) {
-                modelContext.delete(task)
-                try? modelContext.save()
+                onDelete()
             }
         }
     }

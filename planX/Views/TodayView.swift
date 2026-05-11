@@ -90,7 +90,7 @@ struct TodayView: View {
                 ForEach(tasks.prefix(5), id: \.id) { task in
                     TaskRowView(
                         task: task,
-                        isSelected: selectedTask?.id == task.id,
+                        isSelected: selectedTask?.modelContext != nil && selectedTask?.id == task.id,
                         onTap: { selectedTask = task },
                         onToggleComplete: {
                             task.isCompleted.toggle()

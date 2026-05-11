@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct TaskListView: View {
     @ObservedObject var viewModel: AppViewModel
@@ -31,7 +32,7 @@ struct TaskListView: View {
                     ForEach(filteredTasks, id: \.id) { task in
                         TaskRowView(
                             task: task,
-                            isSelected: selectedTask?.id == task.id,
+                            isSelected: selectedTask?.modelContext != nil && selectedTask?.id == task.id,
                             onTap: {
                                 selectedTask = task
                             },
@@ -47,11 +48,18 @@ struct TaskListView: View {
                                 viewModel.refresh()
                             },
                             onDelete: {
-                                modelContext.delete(task)
-                                try? modelContext.save()
-                                viewModel.refresh()
-                                if selectedTask?.id == task.id {
-                                    selectedTask = nil
+                                if selectedTask?.id == task.id { selectedTask = nil }
+                                viewModel.tasks.removeAll { $0.id == task.id }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                    let tid = task.id
+                                    if let allDeps = try? modelContext.fetch(FetchDescriptor<TaskDependency>()) {
+                                        for dep in allDeps where dep.predecessor?.id == tid || dep.successor?.id == tid {
+                                            modelContext.delete(dep)
+                                        }
+                                    }
+                                    modelContext.delete(task)
+                                    try? modelContext.save()
+                                    viewModel.refresh()
                                 }
                             }
                         )

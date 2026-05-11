@@ -7,7 +7,7 @@
         "key": "Enter task (e.g., 'Finish tax documents tomorrow high #admin')",
         "location": {
           "startingColumn": 23,
-          "startingLine": 18
+          "startingLine": 19
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "Quick Add Task",
         "location": {
           "startingColumn": 22,
-          "startingLine": 14
+          "startingLine": 15
         }
       },
       {
@@ -23,7 +23,7 @@
         "key": "Preview:",
         "location": {
           "startingColumn": 26,
-          "startingLine": 30
+          "startingLine": 33
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "@%@",
         "location": {
           "startingColumn": 35,
-          "startingLine": 49
+          "startingLine": 52
         }
       },
       {
@@ -39,7 +39,7 @@
         "key": "#%@",
         "location": {
           "startingColumn": 35,
-          "startingLine": 45
+          "startingLine": 48
         }
       },
       {
@@ -47,7 +47,7 @@
         "key": "Cancel",
         "location": {
           "startingColumn": 24,
-          "startingLine": 61
+          "startingLine": 64
         }
       },
       {
@@ -55,7 +55,7 @@
         "key": "Add Task",
         "location": {
           "startingColumn": 24,
-          "startingLine": 68
+          "startingLine": 71
         }
       }
     ]

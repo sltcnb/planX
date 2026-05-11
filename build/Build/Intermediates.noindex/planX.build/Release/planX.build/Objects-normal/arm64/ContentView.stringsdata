@@ -7,7 +7,7 @@
         "key": "Search tasks",
         "location": {
           "startingColumn": 61,
-          "startingLine": 44
+          "startingLine": 50
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "Sort",
         "location": {
           "startingColumn": 24,
-          "startingLine": 48
+          "startingLine": 54
         }
       },
       {
@@ -23,7 +23,7 @@
         "key": "Select All",
         "location": {
           "startingColumn": 28,
-          "startingLine": 57
+          "startingLine": 63
         }
       },
       {
@@ -31,7 +31,15 @@
         "key": "Done",
         "location": {
           "startingColumn": 28,
-          "startingLine": 68
+          "startingLine": 74
+        }
+      },
+      {
+        "comment": "",
+        "key": "View",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 79
         }
       },
       {
@@ -39,7 +47,7 @@
         "key": "Due Date",
         "location": {
           "startingColumn": 26,
-          "startingLine": 49
+          "startingLine": 55
         }
       },
       {
@@ -47,7 +55,7 @@
         "key": "Priority",
         "location": {
           "startingColumn": 26,
-          "startingLine": 50
+          "startingLine": 56
         }
       },
       {
@@ -55,7 +63,7 @@
         "key": "Title",
         "location": {
           "startingColumn": 26,
-          "startingLine": 51
+          "startingLine": 57
         }
       },
       {
@@ -63,7 +71,7 @@
         "key": "Created",
         "location": {
           "startingColumn": 26,
-          "startingLine": 52
+          "startingLine": 58
         }
       },
       {
@@ -71,23 +79,7 @@
         "key": "Delete (%lld)",
         "location": {
           "startingColumn": 35,
-          "startingLine": 64
-        }
-      },
-      {
-        "comment": "",
-        "key": "Kanban",
-        "location": {
-          "startingColumn": 46,
-          "startingLine": 74
-        }
-      },
-      {
-        "comment": "",
-        "key": "Graph",
-        "location": {
-          "startingColumn": 57,
-          "startingLine": 74
+          "startingLine": 70
         }
       },
       {
@@ -95,7 +87,7 @@
         "key": "Select",
         "location": {
           "startingColumn": 31,
-          "startingLine": 77
+          "startingLine": 87
         }
       },
       {
@@ -103,7 +95,7 @@
         "key": "Quick Add",
         "location": {
           "startingColumn": 31,
-          "startingLine": 80
+          "startingLine": 90
         }
       },
       {
@@ -111,7 +103,7 @@
         "key": "Full Form",
         "location": {
           "startingColumn": 31,
-          "startingLine": 84
+          "startingLine": 94
         }
       }
     ]

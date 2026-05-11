@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 enum ViewMode { case board, calendar, graph }
 
@@ -25,7 +26,7 @@ struct ContentView: View {
                 CalendarView(viewModel: appViewModel, selectedTask: $selectedTask)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             case .graph:
-                TaskGraphView(viewModel: appViewModel)
+                TaskGraphView(viewModel: appViewModel, selectedTask: $selectedTask)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
@@ -43,9 +44,13 @@ struct ContentView: View {
                 }
         }
         .sheet(item: $selectedTask) { task in
-            TaskDetailModalView(task: task) {
+            TaskDetailModalView(task: task, onDismiss: {
                 appViewModel.refresh()
-            }
+            }, onWillDelete: {
+                let taskID = task.id
+                selectedTask = nil
+                appViewModel.tasks.removeAll { $0.id == taskID }
+            })
         }
         .searchable(text: $appViewModel.searchText, prompt: "Search tasks")
         .onChange(of: appViewModel.searchText) { appViewModel.refresh() }
@@ -110,12 +115,21 @@ struct ContentView: View {
 
     private func deleteSelectedTasks() {
         let ids = appViewModel.selectedTaskIDs
+        if let sel = selectedTask, ids.contains(sel.id) { selectedTask = nil }
         let toDelete = appViewModel.tasks.filter { ids.contains($0.id) }
         appViewModel.tasks.removeAll { ids.contains($0.id) }
         appViewModel.selectedTaskIDs = []
         appViewModel.isSelectMode = false
-        for task in toDelete { modelContext.delete(task) }
-        try? modelContext.save()
-        appViewModel.refresh()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            let tids = Set(toDelete.map { $0.id })
+            if let allDeps = try? modelContext.fetch(FetchDescriptor<TaskDependency>()) {
+                for dep in allDeps where tids.contains(dep.predecessor?.id ?? UUID()) || tids.contains(dep.successor?.id ?? UUID()) {
+                    modelContext.delete(dep)
+                }
+            }
+            for task in toDelete { modelContext.delete(task) }
+            try? modelContext.save()
+            appViewModel.refresh()
+        }
     }
 }

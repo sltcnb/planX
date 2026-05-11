@@ -4,6 +4,7 @@ import SwiftData
 struct TaskDetailModalView: View {
     let task: TaskItem
     let onDismiss: () -> Void
+    var onWillDelete: (() -> Void)? = nil
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
 
@@ -30,9 +31,10 @@ struct TaskDetailModalView: View {
     @FocusState private var newTagFocused: Bool
     @FocusState private var newSubtaskFocused: Bool
 
-    init(task: TaskItem, onDismiss: @escaping () -> Void) {
+    init(task: TaskItem, onDismiss: @escaping () -> Void, onWillDelete: (() -> Void)? = nil) {
         self.task = task
         self.onDismiss = onDismiss
+        self.onWillDelete = onWillDelete
         _title = State(initialValue: task.title)
         _notes = State(initialValue: task.notes)
         _status = State(initialValue: task.statusValue)
@@ -97,10 +99,19 @@ struct TaskDetailModalView: View {
 
             Button(action: {
                 isDeleted = true
-                modelContext.delete(task)
-                try? modelContext.save()
-                onDismiss()
+                onWillDelete?()
                 dismiss()
+                onDismiss()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    let tid = task.id
+                    if let allDeps = try? modelContext.fetch(FetchDescriptor<TaskDependency>()) {
+                        for dep in allDeps where dep.predecessor?.id == tid || dep.successor?.id == tid {
+                            modelContext.delete(dep)
+                        }
+                    }
+                    modelContext.delete(task)
+                    try? modelContext.save()
+                }
             }) {
                 Image(systemName: "trash")
                     .foregroundColor(.secondary)

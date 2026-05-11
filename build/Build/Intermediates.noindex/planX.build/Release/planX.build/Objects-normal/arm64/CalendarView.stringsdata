@@ -1,0 +1,64 @@
+{
+  "source": "/Users/nbuisson/Tools/personal/planX/planX/Views/CalendarView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Today",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "No tasks",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 216
+        }
+      },
+      {
+        "comment": "",
+        "key": "+%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 224
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld/%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 318
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mark Incomplete",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 335
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mark Complete",
+        "location": {
+          "startingColumn": 59,
+          "startingLine": 335
+        }
+      }
+    ]
+  },
+  "version": 1
+}

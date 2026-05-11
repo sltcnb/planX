@@ -1,0 +1,67 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildOnly"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "c1be8d86b5150fbeb0f9f94a6335499f19a257b1dc962c42faeb51b751326e3e"
+    }
+  ],
+  "containerPath" : "/Users/nbuisson/Tools/personal/planX/planX.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "hostTargetedPlatform" : null,
+      "platform" : "macosx",
+      "sdk" : "macosx26.4",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/nbuisson/Tools/personal/planX/build/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/nbuisson/Tools/personal/planX/build/Build/Products",
+      "derivedDataPath" : "/Users/nbuisson/Tools/personal/planX/build",
+      "indexDataStoreFolderPath" : "/Users/nbuisson/Tools/personal/planX/build/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/nbuisson/Tools/personal/planX/build/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/nbuisson/Tools/personal/planX/build/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Release",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "build",
+          "COLOR_DIAGNOSTICS" : "YES",
+          "diagnostic_message_length" : "39",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "YES",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

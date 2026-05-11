@@ -73,7 +73,11 @@ class AppViewModel: ObservableObject {
     }
     
     func getFilteredTasks() -> [TaskItem] {
-        var filtered = tasks.filter { $0.modelContext != nil }
+        // modelContext nil = deleted; guard before any property access
+        var filtered = tasks.filter {
+            guard $0.modelContext != nil else { return false }
+            return true
+        }
 
         if let project = selectedProject {
             filtered = filtered.filter { $0.project?.id == project.id }

@@ -127,7 +127,7 @@
         "key": "(edited)",
         "location": {
           "startingColumn": 34,
-          "startingLine": 194
+          "startingLine": 195
         }
       },
       {
@@ -135,7 +135,7 @@
         "key": "Edit",
         "location": {
           "startingColumn": 36,
-          "startingLine": 202
+          "startingLine": 203
         }
       },
       {
@@ -143,7 +143,7 @@
         "key": "Delete",
         "location": {
           "startingColumn": 36,
-          "startingLine": 207
+          "startingLine": 208
         }
       },
       {
@@ -151,7 +151,7 @@
         "key": "Cancel",
         "location": {
           "startingColumn": 36,
-          "startingLine": 224
+          "startingLine": 227
         }
       },
       {
@@ -159,7 +159,7 @@
         "key": "Save",
         "location": {
           "startingColumn": 36,
-          "startingLine": 228
+          "startingLine": 231
         }
       },
       {
@@ -167,7 +167,7 @@
         "key": "Add Time Entry",
         "location": {
           "startingColumn": 22,
-          "startingLine": 306
+          "startingLine": 309
         }
       },
       {
@@ -175,7 +175,7 @@
         "key": "Cancel",
         "location": {
           "startingColumn": 24,
-          "startingLine": 311
+          "startingLine": 314
         }
       },
       {
@@ -183,7 +183,7 @@
         "key": "Save",
         "location": {
           "startingColumn": 24,
-          "startingLine": 315
+          "startingLine": 318
         }
       },
       {
@@ -191,7 +191,7 @@
         "key": "Description (optional)",
         "location": {
           "startingColumn": 27,
-          "startingLine": 331
+          "startingLine": 334
         }
       },
       {
@@ -199,7 +199,7 @@
         "key": "Hours: %lld",
         "location": {
           "startingColumn": 29,
-          "startingLine": 327
+          "startingLine": 330
         }
       },
       {
@@ -207,7 +207,7 @@
         "key": "Minutes: %lld",
         "location": {
           "startingColumn": 29,
-          "startingLine": 328
+          "startingLine": 331
         }
       },
       {
@@ -215,7 +215,7 @@
         "key": "Add Dependency",
         "location": {
           "startingColumn": 22,
-          "startingLine": 353
+          "startingLine": 356
         }
       },
       {
@@ -223,7 +223,7 @@
         "key": "Cancel",
         "location": {
           "startingColumn": 24,
-          "startingLine": 358
+          "startingLine": 361
         }
       },
       {
@@ -231,7 +231,7 @@
         "key": "Add",
         "location": {
           "startingColumn": 24,
-          "startingLine": 362
+          "startingLine": 365
         }
       },
       {
@@ -239,7 +239,7 @@
         "key": "Relationship",
         "location": {
           "startingColumn": 24,
-          "startingLine": 374
+          "startingLine": 377
         }
       },
       {
@@ -247,7 +247,7 @@
         "key": "Select Task",
         "location": {
           "startingColumn": 25,
-          "startingLine": 380
+          "startingLine": 383
         }
       },
       {
@@ -255,7 +255,7 @@
         "key": "Blocks",
         "location": {
           "startingColumn": 26,
-          "startingLine": 375
+          "startingLine": 378
         }
       },
       {
@@ -263,7 +263,7 @@
         "key": "Blocked by",
         "location": {
           "startingColumn": 26,
-          "startingLine": 376
+          "startingLine": 379
         }
       },
       {
@@ -271,7 +271,7 @@
         "key": "Related",
         "location": {
           "startingColumn": 26,
-          "startingLine": 377
+          "startingLine": 380
         }
       }
     ]
