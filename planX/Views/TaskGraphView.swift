@@ -199,7 +199,7 @@ struct TaskGraphView: View {
         // Never access @PersistedProperty on objects that might be invalidated.
         var pidToUUID: [PersistentIdentifier: UUID] = [:]
         snapshots = liveTasks.compactMap { task in
-            guard task.modelContext != nil else { return nil }
+            guard task.modelContext != nil, task.statusValue != .done else { return nil }
             pidToUUID[task.persistentModelID] = task.id
             return TaskSnapshot(
                 id: task.id,
