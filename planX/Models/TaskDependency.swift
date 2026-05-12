@@ -4,7 +4,7 @@ import SwiftData
 @Model
 final class TaskDependency {
     var id: UUID
-    var relationshipType: String // "blocks", "blocked_by", "related"
+    var relationshipType: String // "blocks", "related", "enables", "duplicate"
     
     var createdAt: Date
     

@@ -1,7 +1,6 @@
 import SwiftUI
 import SwiftData
 
-// Value-type snapshots — never hold live SwiftData objects in @State
 private struct DepEdge {
     let predID: UUID
     let succID: UUID
@@ -33,11 +32,25 @@ struct TaskGraphView: View {
     @State private var snapshots: [TaskSnapshot] = []
     @State private var dragStarts: [UUID: CGPoint] = [:]
     @State private var isDraggingNode = false
-    @State private var laneLabels: [(key: String, label: String, y: CGFloat)] = []
+
+    private var filterKey: String {
+        let proj = viewModel.selectedProject?.id.uuidString ?? ""
+        let tag  = viewModel.selectedTag?.id.uuidString ?? ""
+        let fp   = viewModel.filterPriority.map { "\($0)" } ?? ""
+        let fs   = viewModel.filterStatus.map { "\($0)" } ?? ""
+        return "\(viewModel.refreshToken)-\(viewModel.selectedNavigationItem)-\(proj)-\(tag)-\(viewModel.searchText)-\(fp)-\(fs)"
+    }
 
     private var connectedIDs: Set<UUID> {
         var ids = Set<UUID>()
         for e in depEdges { ids.insert(e.predID); ids.insert(e.succID) }
+        return ids
+    }
+
+    // Tasks that have an unresolved "blocks" predecessor — not yet actionable
+    private var blockedIDs: Set<UUID> {
+        var ids = Set<UUID>()
+        for e in depEdges where e.type == "blocks" { ids.insert(e.succID) }
         return ids
     }
 
@@ -46,12 +59,12 @@ struct TaskGraphView: View {
             ZStack {
                 Color(NSColor.underPageBackgroundColor)
 
-                if depEdges.isEmpty && snapshots.isEmpty {
+                if snapshots.isEmpty {
                     emptyState
                 } else {
                     edgeCanvas
-                    laneLayer
                     nodeLayer
+                    projectLegend
                     if !depEdges.isEmpty {
                         legendView
                             .padding(12)
@@ -59,6 +72,7 @@ struct TaskGraphView: View {
                     }
                 }
             }
+            .clipped()
             .gesture(MagnificationGesture()
                 .onChanged { val in scale = max(0.3, min(2.5, val)) }
             )
@@ -70,7 +84,7 @@ struct TaskGraphView: View {
                         height: panStart.height + val.translation.height
                     )
                 }
-                .onEnded { val in
+                .onEnded { _ in
                     guard !isDraggingNode else { return }
                     panStart = panOffset
                 }
@@ -79,7 +93,7 @@ struct TaskGraphView: View {
                 loadSnapshots()
                 layoutNodes(in: geo.size)
             }
-            .onChange(of: viewModel.tasks.count) {
+            .onChange(of: filterKey) {
                 loadSnapshots()
                 layoutNodes(in: geo.size)
             }
@@ -90,15 +104,6 @@ struct TaskGraphView: View {
 
     private var edgeCanvas: some View {
         Canvas { ctx, size in
-            // Lane separator lines
-            for (i, lane) in laneLabels.enumerated() where i > 0 {
-                let lineY = applyTransform(CGPoint(x: 0, y: lane.y - 14)).y
-                var path = Path()
-                path.move(to: CGPoint(x: 0, y: lineY))
-                path.addLine(to: CGPoint(x: size.width, y: lineY))
-                ctx.stroke(path, with: .color(.secondary.opacity(0.15)), lineWidth: 1)
-            }
-            // Dependency arrows
             for edge in depEdges {
                 guard let fromPos = nodePositions[edge.predID],
                       let toPos   = nodePositions[edge.succID]
@@ -107,7 +112,8 @@ struct TaskGraphView: View {
                     ctx: ctx,
                     from: applyTransform(fromPos),
                     to: applyTransform(toPos),
-                    color: depColor(edge.type)
+                    color: depColor(edge.type),
+                    isBlocking: edge.type == "blocks" || edge.type == "enables"
                 )
             }
         }
@@ -119,7 +125,7 @@ struct TaskGraphView: View {
             if let pos = nodePositions[snap.id] {
                 TaskNodeView(
                     snapshot: snap,
-                    isIsolated: !connectedIDs.contains(snap.id),
+                    isBlocked: blockedIDs.contains(snap.id),
                     isSelected: selectedTask?.modelContext != nil && selectedTask?.id == snap.id
                 )
                 .position(applyTransform(pos))
@@ -148,13 +154,29 @@ struct TaskGraphView: View {
         }
     }
 
-    private var laneLayer: some View {
-        ForEach(Array(laneLabels.enumerated()), id: \.offset) { _, lane in
-            Text(lane.label)
-                .font(.system(size: 10, weight: .semibold))
-                .foregroundColor(.secondary.opacity(0.5))
-                .position(applyTransform(CGPoint(x: 10, y: lane.y)))
-                .frame(maxWidth: .infinity, alignment: .leading)
+    @ViewBuilder private var projectLegend: some View {
+        let projects = projectsForLegend()
+        if !projects.isEmpty {
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Projects")
+                    .font(.system(size: 9, weight: .semibold))
+                    .foregroundColor(.secondary)
+                ForEach(projects, id: \.name) { proj in
+                    HStack(spacing: 5) {
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(Color(hex: proj.color))
+                            .frame(width: 8, height: 8)
+                        Text(proj.name)
+                            .font(.system(size: 10))
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+            .padding(10)
+            .background(.ultraThinMaterial)
+            .cornerRadius(8)
+            .padding(12)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
     }
 
@@ -163,10 +185,10 @@ struct TaskGraphView: View {
             Image(systemName: "arrow.triangle.branch")
                 .font(.system(size: 48))
                 .foregroundColor(.secondary.opacity(0.5))
-            Text("No dependencies")
+            Text("No active tasks")
                 .font(.title3)
                 .foregroundColor(.secondary)
-            Text("Add dependencies between tasks to visualize their relationships.")
+            Text("Tasks appear here. Add dependencies to visualize relationships.")
                 .font(.caption)
                 .foregroundColor(.secondary.opacity(0.7))
                 .multilineTextAlignment(.center)
@@ -175,28 +197,48 @@ struct TaskGraphView: View {
     }
 
     private var legendView: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack(spacing: 6) {
-                RoundedRectangle(cornerRadius: 1).fill(Color.red.opacity(0.7)).frame(width: 16, height: 2)
-                Text("Blocks").font(.caption).foregroundColor(.secondary)
-            }
-            HStack(spacing: 6) {
-                RoundedRectangle(cornerRadius: 1).fill(Color.blue.opacity(0.7)).frame(width: 16, height: 2)
-                Text("Related").font(.caption).foregroundColor(.secondary)
-            }
+        VStack(alignment: .leading, spacing: 5) {
+            legendRow(color: .red.opacity(0.75), label: "Blocks", dashed: false)
+            legendRow(color: .green.opacity(0.7), label: "Enables", dashed: false)
+            legendRow(color: .secondary.opacity(0.5), label: "Related", dashed: true)
+            legendRow(color: .purple.opacity(0.5), label: "Duplicate", dashed: true)
         }
         .padding(8)
         .background(.ultraThinMaterial)
         .cornerRadius(8)
     }
 
+    private func legendRow(color: Color, label: String, dashed: Bool) -> some View {
+        HStack(spacing: 6) {
+            Canvas { ctx, size in
+                var path = Path()
+                path.move(to: CGPoint(x: 0, y: size.height / 2))
+                path.addLine(to: CGPoint(x: size.width, y: size.height / 2))
+                ctx.stroke(path, with: .color(color), style: StrokeStyle(lineWidth: 1.5, dash: dashed ? [4, 3] : []))
+            }
+            .frame(width: 18, height: 8)
+            Text(label).font(.caption).foregroundColor(.secondary)
+        }
+    }
+
+    // MARK: - Helpers
+
+    private func projectsForLegend() -> [(name: String, color: String)] {
+        var seen = Set<String>()
+        var result: [(name: String, color: String)] = []
+        for snap in snapshots {
+            if let name = snap.projectName, let color = snap.projectColor, !seen.contains(name) {
+                seen.insert(name)
+                result.append((name: name, color: color))
+            }
+        }
+        return result.sorted { $0.name < $1.name }
+    }
+
     // MARK: - Data
 
     private func loadSnapshots() {
         let liveTasks = viewModel.getFilteredTasks()
-
-        // Build snapshots and a PersistentIdentifier→UUID map from known-valid tasks.
-        // Never access @PersistedProperty on objects that might be invalidated.
         var pidToUUID: [PersistentIdentifier: UUID] = [:]
         snapshots = liveTasks.compactMap { task in
             guard task.modelContext != nil, task.statusValue != .done else { return nil }
@@ -217,10 +259,6 @@ struct TaskGraphView: View {
         do {
             let raw = try modelContext.fetch(FetchDescriptor<TaskDependency>())
             depEdges = raw.compactMap { dep in
-                // Use persistentModelID (backed by NSManagedObject.objectID — safe on
-                // faulted/invalidated objects, unlike @PersistedProperty accessors).
-                // If either task no longer exists in our valid set, the dict lookup
-                // returns nil and the dep is dropped — no backing-data access needed.
                 guard let predPID = dep.predecessor?.persistentModelID,
                       let succPID = dep.successor?.persistentModelID,
                       let predID  = pidToUUID[predPID],
@@ -234,15 +272,13 @@ struct TaskGraphView: View {
     // MARK: - Layout
 
     private func layoutNodes(in size: CGSize) {
-        let nodeW: CGFloat = 170
-        let nodeH: CGFloat = 80
-        let colGap: CGFloat = 30
-        let rowGap: CGFloat = 14
-        let laneGap: CGFloat = 44
-        let labelH: CGFloat = 18
-        let leftPad: CGFloat = 60
+        let nodeW: CGFloat = 160
+        let nodeH: CGFloat = 88
+        let colGap: CGFloat = 44
+        let rowGap: CGFloat = 18
+        let topPad: CGFloat = 30
+        let leftPad: CGFloat = 40
 
-        // Precompute depth for all nodes
         var depthMap: [UUID: Int] = [:]
         for snap in snapshots {
             if depthMap[snap.id] == nil {
@@ -251,69 +287,53 @@ struct TaskGraphView: View {
             }
         }
 
-        // Group by project; secondary sort by first tag within each group
-        var byProject: [String: [TaskSnapshot]] = [:]
-        for snap in snapshots {
-            byProject[snap.projectName ?? "", default: []].append(snap)
-        }
-        let sortedKeys = byProject.keys.sorted { a, b in
-            if a.isEmpty { return false }  // "No Project" last
-            if b.isEmpty { return true }
-            return a < b
+        let connected = snapshots.filter { connectedIDs.contains($0.id) }
+        let isolated  = snapshots.filter { !connectedIDs.contains($0.id) }
+
+        let projectSort: (TaskSnapshot, TaskSnapshot) -> Bool = { a, b in
+            let pa = a.projectName ?? "zzz"
+            let pb = b.projectName ?? "zzz"
+            return pa == pb ? a.title < b.title : pa < pb
         }
 
-        var currentY: CGFloat = 20
-        var newLabels: [(key: String, label: String, y: CGFloat)] = []
-
-        for key in sortedKeys {
-            // Secondary sort within lane: by first tag name, then title
-            let snapsInLane = (byProject[key] ?? []).sorted {
-                let ta = $0.tagNames.first ?? ""
-                let tb = $1.tagNames.first ?? ""
-                return ta == tb ? $0.title < $1.title : ta < tb
+        if connected.isEmpty {
+            // No deps — grid layout
+            let cols = max(1, Int(ceil(sqrt(Double(snapshots.count)))))
+            for (i, snap) in snapshots.sorted(by: projectSort).enumerated() {
+                let col = i % cols
+                let row = i / cols
+                nodePositions[snap.id] = CGPoint(
+                    x: leftPad + CGFloat(col) * (nodeW + colGap) + nodeW / 2,
+                    y: topPad + CGFloat(row) * (nodeH + rowGap) + nodeH / 2
+                )
             }
-
-            let label = key.isEmpty ? "No Project" : key
-            newLabels.append((key: key, label: label, y: currentY + labelH / 2))
-            currentY += labelH + 6
-
-            let connected = snapsInLane.filter { connectedIDs.contains($0.id) }
-            let isolated  = snapsInLane.filter { !connectedIDs.contains($0.id) }
-
-            // Connected: depth columns, secondary sort by tag within column
+        } else {
+            // Depth columns for connected nodes
             var byDepth: [Int: [TaskSnapshot]] = [:]
             for snap in connected {
                 byDepth[depthMap[snap.id] ?? 0, default: []].append(snap)
             }
-
-            var maxRowCount = 0
-            for (depth, col) in byDepth.sorted(by: { $0.key < $1.key }) {
-                for (row, snap) in col.enumerated() {
-                    let x = CGFloat(depth) * (nodeW + colGap) + nodeW / 2 + leftPad
-                    let y = currentY + CGFloat(row) * (nodeH + rowGap) + nodeH / 2
-                    nodePositions[snap.id] = CGPoint(x: x, y: y)
+            for key in byDepth.keys {
+                byDepth[key]!.sort(by: projectSort)
+            }
+            for (depth, snaps) in byDepth {
+                for (row, snap) in snaps.enumerated() {
+                    nodePositions[snap.id] = CGPoint(
+                        x: leftPad + CGFloat(depth) * (nodeW + colGap) + nodeW / 2,
+                        y: topPad + CGFloat(row) * (nodeH + rowGap) + nodeH / 2
+                    )
                 }
-                maxRowCount = max(maxRowCount, col.count)
             }
 
-            // Isolated: compact grid continuing after connected columns
-            let maxDepth = byDepth.keys.max() ?? -1
-            let isoX0 = CGFloat(maxDepth + 1) * (nodeW + colGap) + nodeW / 2 + leftPad
-            let isoCols = max(1, Int(ceil(sqrt(Double(max(1, isolated.count))))))
-            let isoGap: CGFloat = 12
-            for (i, snap) in isolated.enumerated() {
-                let col = i % isoCols
-                let row = i / isoCols
-                let x = isoX0 + CGFloat(col) * (nodeW + isoGap)
-                let y = currentY + CGFloat(row) * (nodeH + isoGap) + nodeH / 2
-                nodePositions[snap.id] = CGPoint(x: x, y: y)
-                maxRowCount = max(maxRowCount, row + 1)
+            // Isolated: rightmost column
+            let isoColX = leftPad + CGFloat((byDepth.keys.max() ?? -1) + 1) * (nodeW + colGap) + nodeW / 2
+            for (i, snap) in isolated.sorted(by: projectSort).enumerated() {
+                nodePositions[snap.id] = CGPoint(
+                    x: isoColX,
+                    y: topPad + CGFloat(i) * (nodeH + rowGap) + nodeH / 2
+                )
             }
-
-            currentY += CGFloat(max(1, maxRowCount)) * (nodeH + rowGap) + laneGap
         }
-
-        laneLabels = newLabels
     }
 
     private func computeDepth(id: UUID, visited: inout Set<UUID>) -> Int {
@@ -332,13 +352,15 @@ struct TaskGraphView: View {
 
     private func depColor(_ type: String) -> Color {
         switch type {
-        case "blocks":  return .red.opacity(0.7)
-        case "related": return .blue.opacity(0.7)
-        default:        return .secondary.opacity(0.5)
+        case "blocks":    return .red.opacity(0.75)
+        case "enables":   return .green.opacity(0.7)
+        case "related":   return .secondary.opacity(0.5)
+        case "duplicate": return .purple.opacity(0.5)
+        default:          return .secondary.opacity(0.4)
         }
     }
 
-    private func drawArrow(ctx: GraphicsContext, from: CGPoint, to: CGPoint, color: Color) {
+    private func drawArrow(ctx: GraphicsContext, from: CGPoint, to: CGPoint, color: Color, isBlocking: Bool) {
         let dx = to.x - from.x, dy = to.y - from.y
         let len = sqrt(dx * dx + dy * dy)
         guard len > 1 else { return }
@@ -348,11 +370,19 @@ struct TaskGraphView: View {
         let start = CGPoint(x: from.x + ux * nodeR, y: from.y + uy * nodeR)
         let end   = CGPoint(x: to.x   - ux * nodeR, y: to.y   - uy * nodeR)
 
-        var line = Path()
-        line.move(to: start); line.addLine(to: end)
-        ctx.stroke(line, with: .color(color), lineWidth: 1.5)
+        let cp1 = CGPoint(x: start.x + (end.x - start.x) * 0.45, y: start.y)
+        let cp2 = CGPoint(x: end.x   - (end.x - start.x) * 0.45, y: end.y)
 
-        let angle = atan2(uy, ux)
+        var curve = Path()
+        curve.move(to: start)
+        curve.addCurve(to: end, control1: cp1, control2: cp2)
+        let style = StrokeStyle(
+            lineWidth: isBlocking ? 2.0 : 1.2,
+            dash: isBlocking ? [] : [6, 4]
+        )
+        ctx.stroke(curve, with: .color(color), style: style)
+
+        let angle = atan2(end.y - cp2.y, end.x - cp2.x)
         var head = Path()
         head.move(to: end)
         head.addLine(to: CGPoint(x: end.x + cos(angle + .pi * 5/6) * arrowLen,
@@ -368,57 +398,56 @@ struct TaskGraphView: View {
 
 fileprivate struct TaskNodeView: View {
     let snapshot: TaskSnapshot
-    let isIsolated: Bool
+    let isBlocked: Bool
     let isSelected: Bool
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             // Title row
             HStack(spacing: 5) {
-                Image(systemName: snapshot.isCompleted ? "checkmark.circle.fill" : "circle")
-                    .font(.system(size: 10))
-                    .foregroundColor(snapshot.isCompleted ? .green : .secondary)
+                Circle()
+                    .fill(statusColor.opacity(isBlocked ? 0.4 : 1))
+                    .frame(width: 5, height: 5)
                 Text(snapshot.title.isEmpty ? "Untitled" : snapshot.title)
-                    .font(.caption.weight(.semibold))
+                    .font(.system(size: 11, weight: .medium))
                     .lineLimit(2)
-                    .foregroundColor(isIsolated ? .secondary : .primary)
+                    .foregroundColor(isBlocked ? .secondary : .primary)
                 Spacer(minLength: 0)
-                priorityDot
+                priorityIndicator
             }
 
-            // Project row
             if let name = snapshot.projectName {
                 HStack(spacing: 4) {
-                    Circle()
-                        .fill(Color(hex: snapshot.projectColor ?? "blue"))
-                        .frame(width: 5, height: 5)
+                    if let color = snapshot.projectColor {
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(Color(hex: color).opacity(isBlocked ? 0.4 : 0.7))
+                            .frame(width: 6, height: 6)
+                    }
                     Text(name)
                         .font(.system(size: 9))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.secondary.opacity(0.7))
                         .lineLimit(1)
                 }
             }
 
-            // Tags row
             if !snapshot.tagNames.isEmpty {
                 HStack(spacing: 3) {
-                    ForEach(snapshot.tagNames.prefix(3), id: \.self) { tag in
+                    ForEach(snapshot.tagNames.prefix(2), id: \.self) { tag in
                         Text(tag)
                             .font(.system(size: 8))
                             .padding(.horizontal, 4).padding(.vertical, 1)
-                            .background(Color.accentColor.opacity(0.15))
-                            .foregroundColor(.accentColor)
+                            .background(Color.secondary.opacity(0.1))
+                            .foregroundColor(.secondary)
                             .cornerRadius(3)
                     }
-                    if snapshot.tagNames.count > 3 {
-                        Text("+\(snapshot.tagNames.count - 3)")
+                    if snapshot.tagNames.count > 2 {
+                        Text("+\(snapshot.tagNames.count - 2)")
                             .font(.system(size: 8))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.secondary.opacity(0.6))
                     }
                 }
             }
 
-            // Due date row
             if let due = snapshot.dueDate {
                 HStack(spacing: 3) {
                     Image(systemName: "calendar")
@@ -426,22 +455,22 @@ fileprivate struct TaskNodeView: View {
                     Text(formatDue(due))
                         .font(.system(size: 8))
                 }
-                .foregroundColor(due < Date() && !snapshot.isCompleted ? .red : .secondary)
+                .foregroundColor(due < Date() && !snapshot.isCompleted ? .red.opacity(0.8) : .secondary.opacity(0.6))
             }
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 8)
-        .frame(width: isIsolated ? 150 : 170)
-        .background(Color(NSColor.controlBackgroundColor).opacity(isIsolated ? 0.6 : 1.0))
+        .frame(width: 160, alignment: .leading)
+        .background(Color(NSColor.controlBackgroundColor).opacity(isBlocked ? 0.5 : 0.95))
+        .clipShape(RoundedRectangle(cornerRadius: 7))
         .overlay(
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: 7)
                 .stroke(
-                    isSelected ? Color.accentColor : (isIsolated ? statusColor.opacity(0.4) : statusColor),
-                    lineWidth: isSelected ? 2 : 1.5
+                    isSelected ? Color.accentColor : Color.secondary.opacity(isBlocked ? 0.2 : 0.35),
+                    lineWidth: isSelected ? 2 : 1
                 )
         )
-        .cornerRadius(8)
-        .shadow(color: .black.opacity(isSelected ? 0.25 : 0.1), radius: isSelected ? 5 : 2, x: 0, y: 1)
+        .shadow(color: .black.opacity(isSelected ? 0.18 : 0.06), radius: isSelected ? 5 : 2, x: 0, y: 1)
     }
 
     private func formatDue(_ date: Date) -> String {
@@ -463,11 +492,18 @@ fileprivate struct TaskNodeView: View {
         }
     }
 
-    @ViewBuilder private var priorityDot: some View {
+    @ViewBuilder private var priorityIndicator: some View {
         switch snapshot.priorityValue {
-        case .high:   Circle().fill(Color.red).frame(width: 6, height: 6)
-        case .medium: Circle().fill(Color.orange).frame(width: 6, height: 6)
-        case .low:    EmptyView()
+        case .high:
+            Text("!")
+                .font(.system(size: 9, weight: .bold))
+                .foregroundColor(.secondary.opacity(0.7))
+        case .medium:
+            Text("·")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(.secondary.opacity(0.5))
+        case .low:
+            EmptyView()
         }
     }
 }

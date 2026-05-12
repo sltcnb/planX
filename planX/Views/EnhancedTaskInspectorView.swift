@@ -103,10 +103,14 @@ struct TaskDetailModalView: View {
                 dismiss()
                 onDismiss()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                    let tid = task.id
+                    let tpid = task.persistentModelID
                     if let allDeps = try? modelContext.fetch(FetchDescriptor<TaskDependency>()) {
-                        for dep in allDeps where dep.predecessor?.id == tid || dep.successor?.id == tid {
-                            modelContext.delete(dep)
+                        for dep in allDeps {
+                            let pp = dep.predecessor?.persistentModelID
+                            let sp = dep.successor?.persistentModelID
+                            if pp == tpid || sp == tpid || pp == nil || sp == nil {
+                                modelContext.delete(dep)
+                            }
                         }
                     }
                     modelContext.delete(task)
@@ -423,7 +427,9 @@ struct TaskDetailModalView: View {
                 Menu {
                     Button("Blocked by…") { pendingDepType = "blocked_by"; showingDependencyPicker = true }
                     Button("Blocks…") { pendingDepType = "blocks"; showingDependencyPicker = true }
+                    Button("Enables…") { pendingDepType = "enables"; showingDependencyPicker = true }
                     Button("Related to…") { pendingDepType = "related"; showingDependencyPicker = true }
+                    Button("Duplicate of…") { pendingDepType = "duplicate"; showingDependencyPicker = true }
                 } label: {
                     Image(systemName: "plus").foregroundColor(.secondary)
                 }
@@ -435,8 +441,16 @@ struct TaskDetailModalView: View {
                 .compactMap { dep -> TaskItem? in
                     dep.predecessor?.id == task.id ? dep.successor : dep.predecessor
                 }
+            let enables = task.dependencies.filter { $0.relationshipType == "enables" && $0.predecessor?.id == task.id }
+                .compactMap { $0.successor }
+            let enabledBy = task.dependencies.filter { $0.relationshipType == "enables" && $0.successor?.id == task.id }
+                .compactMap { $0.predecessor }
+            let duplicates = task.dependencies.filter { $0.relationshipType == "duplicate" }
+                .compactMap { dep -> TaskItem? in
+                    dep.predecessor?.id == task.id ? dep.successor : dep.predecessor
+                }
 
-            if blocked.isEmpty && blocking.isEmpty && related.isEmpty {
+            if blocked.isEmpty && blocking.isEmpty && related.isEmpty && enables.isEmpty && enabledBy.isEmpty && duplicates.isEmpty {
                 Text("No links")
                     .font(.callout).foregroundColor(.secondary)
             }
@@ -447,8 +461,17 @@ struct TaskDetailModalView: View {
             if !blocking.isEmpty {
                 depGroup(label: "Blocks", icon: "bolt.fill", color: .red, tasks: blocking, type: "blocks")
             }
+            if !enabledBy.isEmpty {
+                depGroup(label: "Enabled by", icon: "arrow.up.circle", color: .green, tasks: enabledBy, type: "enables")
+            }
+            if !enables.isEmpty {
+                depGroup(label: "Enables", icon: "arrow.up.circle.fill", color: .green, tasks: enables, type: "enables")
+            }
             if !related.isEmpty {
-                depGroup(label: "Related", icon: "arrow.left.arrow.right", color: .blue, tasks: related, type: "related")
+                depGroup(label: "Related", icon: "arrow.left.arrow.right", color: .secondary, tasks: related, type: "related")
+            }
+            if !duplicates.isEmpty {
+                depGroup(label: "Duplicate of", icon: "doc.on.doc", color: .secondary, tasks: duplicates, type: "duplicate")
             }
         }
         .padding(.horizontal, 20)
@@ -459,6 +482,10 @@ struct TaskDetailModalView: View {
                     DependencyService.shared.addDependency(from: other, to: task, type: "blocks", context: modelContext)
                 } else if pendingDepType == "blocks" {
                     DependencyService.shared.addDependency(from: task, to: other, type: "blocks", context: modelContext)
+                } else if pendingDepType == "enables" {
+                    DependencyService.shared.addDependency(from: task, to: other, type: "enables", context: modelContext)
+                } else if pendingDepType == "duplicate" {
+                    DependencyService.shared.addDependency(from: task, to: other, type: "duplicate", context: modelContext)
                 } else {
                     DependencyService.shared.addDependency(from: task, to: other, type: "related", context: modelContext)
                 }

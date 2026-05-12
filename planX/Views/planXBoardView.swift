@@ -156,10 +156,14 @@ struct BucketView: View {
                 if selectedTask?.id == task.id { selectedTask = nil }
                 viewModel.tasks.removeAll { $0.id == task.id }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                    let tid = task.id
+                    let tpid = task.persistentModelID
                     if let allDeps = try? modelContext.fetch(FetchDescriptor<TaskDependency>()) {
-                        for dep in allDeps where dep.predecessor?.id == tid || dep.successor?.id == tid {
-                            modelContext.delete(dep)
+                        for dep in allDeps {
+                            let pp = dep.predecessor?.persistentModelID
+                            let sp = dep.successor?.persistentModelID
+                            if pp == tpid || sp == tpid || pp == nil || sp == nil {
+                                modelContext.delete(dep)
+                            }
                         }
                     }
                     modelContext.delete(task)

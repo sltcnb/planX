@@ -121,10 +121,14 @@ struct ContentView: View {
         appViewModel.selectedTaskIDs = []
         appViewModel.isSelectMode = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-            let tids = Set(toDelete.map { $0.id })
+            let tpids = Set(toDelete.map { $0.persistentModelID })
             if let allDeps = try? modelContext.fetch(FetchDescriptor<TaskDependency>()) {
-                for dep in allDeps where tids.contains(dep.predecessor?.id ?? UUID()) || tids.contains(dep.successor?.id ?? UUID()) {
-                    modelContext.delete(dep)
+                for dep in allDeps {
+                    let pp = dep.predecessor?.persistentModelID
+                    let sp = dep.successor?.persistentModelID
+                    if pp.map({ tpids.contains($0) }) ?? true || sp.map({ tpids.contains($0) }) ?? true {
+                        modelContext.delete(dep)
+                    }
                 }
             }
             for task in toDelete { modelContext.delete(task) }

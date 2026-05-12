@@ -21,6 +21,7 @@ class AppViewModel: ObservableObject {
     @Published var sortOrder: SortOrder = .dueDate
     @Published var isSelectMode: Bool = false
     @Published var selectedTaskIDs: Set<UUID> = []
+    @Published var refreshToken: UUID = UUID()
 
     enum SortOrder {
         case dueDate, priority, title, createdAt
@@ -70,6 +71,7 @@ class AppViewModel: ObservableObject {
         loadTasks()
         loadProjects()
         loadTags()
+        refreshToken = UUID()
     }
     
     func getFilteredTasks() -> [TaskItem] {
