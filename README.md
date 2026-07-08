@@ -1,5 +1,3 @@
-<p align="center"><img src="docs/banner.png" alt="planX" width="100%"></p>
-
 # planX
 
 A native macOS task manager built with SwiftUI and SwiftData.
