@@ -103,37 +103,100 @@ class ExportImportService {
                 task.statusValue = status
             }
             
+            if let dueDateString = taskData["dueDate"] as? String, !dueDateString.isEmpty,
+               let dueDate = ISO8601DateFormatter().date(from: dueDateString) {
+                task.dueDate = dueDate
+            }
+
             if let isCompleted = taskData["isCompleted"] as? Bool, isCompleted {
                 task.isCompleted = true
             }
-            
+
             context.insert(task)
             importedTasks.append(task)
         }
-        
+
         return importedTasks
     }
-    
+
     private func importFromCSV(_ data: Data, context: ModelContext) -> [TaskItem] {
         guard let csvString = String(data: data, encoding: .utf8) else {
             return []
         }
-        
+
         let lines = csvString.components(separatedBy: "\n").filter { !$0.isEmpty }
         guard lines.count > 1 else { return [] }
-        
+
         var importedTasks: [TaskItem] = []
-        
+
+        // Column order matches exportToCSV:
+        // ID,Title,Notes,Due Date,Priority,Status,Project,Tags,Completed
         for line in lines.dropFirst() {
-            let columns = line.components(separatedBy: ",")
+            let columns = parseCSVLine(line)
             guard columns.count >= 2 else { continue }
-            
+
             let task = TaskItem(title: columns[1])
+            if columns.count > 2 {
+                task.notes = columns[2]
+            }
+            if columns.count > 4,
+               let priority = Priority.allCases.first(where: { $0.name == columns[4] }) {
+                task.priorityValue = priority
+            }
+            if columns.count > 5,
+               let status = TaskStatus.allCases.first(where: { $0.name == columns[5] }) {
+                task.statusValue = status
+            }
+            if columns.count > 8, columns[8].caseInsensitiveCompare("Yes") == .orderedSame {
+                task.isCompleted = true
+            }
+
             context.insert(task)
             importedTasks.append(task)
         }
-        
+
         return importedTasks
+    }
+
+    /// Parses a single CSV line into its fields, honouring the same quoting
+    /// rules produced by `escapeCSV` (double quotes wrap fields containing
+    /// commas/quotes/newlines, and literal quotes are doubled). A naive
+    /// `components(separatedBy: ",")` split would corrupt any exported field
+    /// that contained a comma.
+    private func parseCSVLine(_ line: String) -> [String] {
+        var fields: [String] = []
+        var current = ""
+        var insideQuotes = false
+        var iterator = line.makeIterator()
+        var pending: Character? = iterator.next()
+
+        while let char = pending {
+            pending = iterator.next()
+
+            if insideQuotes {
+                if char == "\"" {
+                    if pending == "\"" {
+                        // Escaped quote inside a quoted field.
+                        current.append("\"")
+                        pending = iterator.next()
+                    } else {
+                        insideQuotes = false
+                    }
+                } else {
+                    current.append(char)
+                }
+            } else if char == "\"" {
+                insideQuotes = true
+            } else if char == "," {
+                fields.append(current)
+                current = ""
+            } else {
+                current.append(char)
+            }
+        }
+
+        fields.append(current)
+        return fields
     }
 }
 
