@@ -81,10 +81,10 @@ Press `⌘R` to build and run.
 
 ## Tech Stack
 
-- **SwiftUI** — UI framework
-- **SwiftData** — persistence
-- **Canvas API** — graph view rendering
-- **AppKit** — native macOS integration
+- **SwiftUI**: UI framework
+- **SwiftData**: persistence
+- **Canvas API**: graph view rendering
+- **AppKit**: native macOS integration
 
 ## License
 
