@@ -88,4 +88,4 @@ Press `⌘R` to build and run.
 
 ## License
 
-MIT
+[MIT](LICENSE).
